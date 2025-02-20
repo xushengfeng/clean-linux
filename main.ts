@@ -51,6 +51,14 @@ function sumSize(path: string): number {
 	return 0;
 }
 
+function showSize(s: number) {
+	const mb = s / 1024 / 1024;
+	if (mb < 1) return `${Math.round(s / 1024)}K`;
+	const gb = mb / 1024;
+	if (gb < 1) return `${Math.round(mb)}M`;
+	return `${Math.round(gb)}G`;
+}
+
 for (const [n, v] of Object.entries(l)) {
 	try {
 		const filePath = execSync(v.file).toString().trim();
@@ -66,7 +74,7 @@ const runL = await checkbox({
 	message: "Select to clean",
 	choices: willRun.map((i) => ({
 		value: i.name,
-		description: `${Math.round(i.size / 1024 / 1024)}M`,
+		description: showSize(i.size),
 		checked: true,
 	})),
 });
@@ -96,6 +104,6 @@ for (const i of willRun) {
 	}
 }
 
-console.log(`${(beforeSize - afterSize) / 1024 / 1024}M`);
+console.log(showSize(beforeSize - afterSize));
 
 Deno.exit();
