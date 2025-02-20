@@ -9,3 +9,15 @@
 -   pnpm
 -   pip
 -   trach(回收站)
+
+## 使用
+
+安装 Deno.js
+
+```shell
+npm i
+```
+
+```shell
+deno run main.ts
+```
