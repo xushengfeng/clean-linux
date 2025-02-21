@@ -26,7 +26,7 @@ const l: Record<
 	pnpm: { com: "pnpm store prune", file: "pnpm store path", type: "code lib" },
 	pip: { com: "pip cache purge", file: "echo ~/.cache/pip", type: "code lib" },
 	trash: {
-		com: "rm -r ~/.local/trash",
+		com: "rm -r ~/.local/share/Trash",
 		file: "echo ~/.local/share/Trash/files",
 		type: "trash",
 	},
