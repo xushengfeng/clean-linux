@@ -53,10 +53,10 @@ function sumSize(path: string): number {
 
 function showSize(s: number) {
 	const mb = s / 1024 / 1024;
-	if (mb < 1) return `${Math.round(s / 1024)}K`;
+	if (mb < 1) return `${(s / 1024).toFixed(2)}K`;
 	const gb = mb / 1024;
-	if (gb < 1) return `${Math.round(mb)}M`;
-	return `${Math.round(gb)}G`;
+	if (gb < 1) return `${(mb).toFixed(2)}M`;
+	return `${(gb).toFixed(2)}G`;
 }
 
 for (const [n, v] of Object.entries(l)) {
