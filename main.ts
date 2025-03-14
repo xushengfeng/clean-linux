@@ -23,6 +23,11 @@ const l: Record<
 		file: "echo ~/.cache/yay",
 		type: "sys pak",
 	},
+	npm: {
+		com: "npm cache clean --force",
+		file: "echo ~/.npm",
+		type: "code lib",
+	},
 	pnpm: { com: "pnpm store prune", file: "pnpm store path", type: "code lib" },
 	pip: { com: "pip cache purge", file: "echo ~/.cache/pip", type: "code lib" },
 	trash: {
