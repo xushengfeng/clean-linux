@@ -35,20 +35,24 @@ const l: Record<
 const willRun: { name: string; size: number }[] = [];
 
 function sumSize(path: string): number {
-	const stat = Deno.statSync(path);
-	if (stat.isSymlink) return 0;
-	if (stat.isFile) {
-		return stat.size;
-	}
-	if (stat.isDirectory) {
-		let sum = 0;
-		for (const entry of Deno.readDirSync(path)) {
-			const entryPath = `${path}/${entry.name}`;
-			sum += sumSize(entryPath);
+	try {
+		const stat = Deno.statSync(path);
+		if (stat.isSymlink) return 0;
+		if (stat.isFile) {
+			return stat.size;
 		}
-		return sum;
+		if (stat.isDirectory) {
+			let sum = 0;
+			for (const entry of Deno.readDirSync(path)) {
+				const entryPath = `${path}/${entry.name}`;
+				sum += sumSize(entryPath);
+			}
+			return sum;
+		}
+		return 0;
+	} catch (_error) {
+		return 0;
 	}
-	return 0;
 }
 
 function showSize(s: number) {
